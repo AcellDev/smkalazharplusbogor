@@ -1,0 +1,6 @@
+```yaml
+   ---
+   deployment:
+     tasks:
+       - export DEPLOYPATH=/home/smkalazh/public_html
+       - /bin/cp -R * $DEPLOYPATH
