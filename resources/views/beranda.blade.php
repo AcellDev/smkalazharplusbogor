@@ -75,7 +75,7 @@
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-2/5" data-aos="fade-right">
                     <div class="bg-white p-3 rounded-2xl shadow-lg border border-slate-100">
-                        <img src="images/guru/Bu_Mega.jpg" alt="Kepala Sekolah" class="w-full h-[450px] object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-700 cursor-pointer">
+                        <img src="images/guru/Bu_Mega.jpg" alt="Kepala Sekolah" class="w-full h-[450px] object-cover rounded-xl grayscale-0 md:grayscale md:hover:grayscale-0 transition-all duration-700 cursor-pointer">
                     </div>
                 </div>
                 <div class="w-full lg:w-3/5" data-aos="fade-left">
