@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-<link rel="icon" type="image/png" href="{{ asset('images/logo-alza.png') }}">
+
 @section('content')
 <div class="relative bg-green-900 rounded-[2rem] p-8 sm:p-10 mb-8 overflow-hidden shadow-lg border-b-4 border-yellow-400 flex flex-col md:flex-row items-center justify-between gap-8">
     <div class="absolute inset-0 bg-pattern-light opacity-20 pointer-events-none"></div>

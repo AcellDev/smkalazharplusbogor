@@ -30,31 +30,45 @@
 
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-yellow-300 selection:text-green-900">
 
-    <!-- 1. NAVBAR -->
-    <nav class="w-full bg-white/95 backdrop-blur-sm shadow-sm fixed top-0 z-50 border-b border-slate-100" data-aos="fade-down" data-aos-duration="800">
-        <div class="container mx-auto px-6 py-4 flex items-center justify-between max-w-7xl">
-            <div class="flex-1 flex justify-start">
+ <nav class="w-full bg-white/95 backdrop-blur-sm shadow-sm fixed top-0 z-50 border-b border-slate-100" data-aos="fade-down" data-aos-duration="800">
+        <div class="container mx-auto px-4 md:px-6 py-3 md:py-4 flex flex-col md:flex-row items-center justify-between max-w-7xl gap-3 md:gap-0">
+            
+            <div class="w-full md:w-auto flex items-center justify-between md:justify-start md:flex-1">
                 <a href="/" class="flex items-center gap-3 group">
-                    <img src="{{ asset('images/logo-alza.png') }}" class="h-10 transition-transform duration-300 group-hover:scale-105" alt="Logo">
-                    <div class="hidden sm:block">
-                        <h1 class="font-extrabold text-green-900 leading-none text-lg tracking-tight">SMK AL-AZHAR</h1>
-                        <p class="text-[10px] font-bold text-yellow-500 tracking-widest uppercase mt-0.5">Plus Bogor</p>
+                    <img src="{{ asset('images/logo-alza.png') }}" class="h-8 md:h-10 transition-transform duration-300 group-hover:scale-105" alt="Logo">
+                    <div>
+                        <h1 class="font-extrabold text-green-900 leading-none text-sm md:text-lg tracking-tight">SMK AL-AZHAR</h1>
+                        <p class="text-[9px] md:text-[10px] font-bold text-yellow-500 tracking-widest uppercase mt-0.5">Plus Bogor</p>
                     </div>
                 </a>
+                
+                <div class="md:hidden">
+                    <a href="https://wa.me/6285210579586" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-9 h-9 text-white bg-emerald-800 rounded-full hover:bg-emerald-900 transition-colors shadow-md">
+                        <i class="fab fa-whatsapp text-base"></i>
+                    </a>
+                </div>
             </div>
 
-            <div class="hidden md:flex justify-center gap-8 items-center bg-slate-50 px-8 py-2.5 rounded-full border border-slate-100 shadow-inner">
-                <a href="/" class="text-sm font-bold text-green-700">Beranda</a>
-                <a href="/profil" class="text-sm font-semibold text-slate-500 hover:text-green-700 transition-colors">Profil</a>
-                <a href="/program" class="text-sm font-semibold text-slate-500 hover:text-green-700 transition-colors">Program Studi</a>
-                <a href="galeri" class="text-sm font-semibold text-slate-500 hover:text-green-700 transition-colors">Galeri</a>
+            <div class="flex justify-center gap-4 md:gap-8 items-center bg-slate-50 px-5 md:px-8 py-2 rounded-full border border-slate-100 shadow-inner w-auto max-w-full overflow-x-auto whitespace-nowrap">
+                
+                <a href="/" class="text-xs md:text-sm transition-colors {{ request()->is('/') ? 'font-bold text-green-700' : 'font-semibold text-slate-500 hover:text-green-700' }}">Beranda</a>
+                
+                <a href="/profil" class="text-xs md:text-sm transition-colors {{ request()->is('profil*') ? 'font-bold text-green-700' : 'font-semibold text-slate-500 hover:text-green-700' }}">Profil</a>
+                
+                <a href="/program" class="text-xs md:text-sm transition-colors {{ request()->is('program*') ? 'font-bold text-green-700' : 'font-semibold text-slate-500 hover:text-green-700' }}">Program Studi</a>
+                
+                <a href="/galeri" class="text-xs md:text-sm transition-colors {{ request()->is('galeri*') ? 'font-bold text-green-700' : 'font-semibold text-slate-500 hover:text-green-700' }}">Galeri</a>
+            
             </div>
 
-            <div class="flex-1 flex justify-end gap-4 items-center">
+            <div class="hidden md:flex md:flex-1 justify-end items-center">
                 <a href="https://wa.me/6285210579586" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white bg-emerald-800 rounded-full hover:bg-emerald-900 transition-colors shadow-md">
                     <i class="fab fa-whatsapp text-lg mr-2"></i> 
-                        Hubungi Kami
+                    <span>Hubungi Kami</span>
                 </a>
+            </div>
+            
+        </div>
     </nav>
 
     <!-- 2. HERO SECTION -->
@@ -82,7 +96,7 @@
             </p>
             
             <div class="mt-10 flex items-center justify-center gap-x-6">
-                <a href="#program" class="rounded-full bg-yellow-400 px-8 py-3.5 text-sm font-bold text-green-950 shadow-lg hover:shadow-xl hover:bg-yellow-300 transition-all transform hover:-translate-y-1">
+                <a href="/program" class="rounded-full bg-yellow-400 px-8 py-3.5 text-sm font-bold text-green-950 shadow-lg hover:shadow-xl hover:bg-yellow-300 transition-all transform hover:-translate-y-1">
                     Jelajahi Program
                 </a>
                 <a href="/profil" class="rounded-full bg-white/20 border border-white/30 px-8 py-3.5 text-sm font-semibold leading-6 text-white hover:bg-white/30 transition-all backdrop-blur-md shadow-lg transform hover:-translate-y-1">
@@ -186,21 +200,23 @@
         </div>
     </section>
 
-    <section class="py-24 bg-white overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        
-        <div class="text-center mb-20">
-            <span class="px-4 py-1.5 text-xs font-bold tracking-widest text-emerald-700 bg-emerald-50 rounded-full uppercase border border-emerald-200/60">
+ <section class="py-16 md:py-24 bg-dots-white relative overflow-hidden">
+    
+    <div class="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/50 pointer-events-none"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <div class="text-center mb-12" data-aos="fade-up">
+            <span class="inline-block py-1 px-3 rounded-lg bg-emerald-100 text-emerald-800 text-[10px] font-black uppercase tracking-widest">
                 Bidang Keahlian
             </span>
-            <h2 class="mt-4 text-3xl font-black text-gray-900 tracking-tight sm:text-4xl lg:text-5xl">
+            <h2 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mt-3 mb-2">
                 Program Studi Unggulan
             </h2>
-            <p class="mt-4 max-w-2xl mx-auto text-base lg:text-lg text-gray-500 leading-relaxed">
+            <p class="text-slate-500 text-sm max-w-xl mx-auto leading-relaxed">
                 Membentuk generasi kompeten, kreatif, dan siap kerja melalui kurikulum berbasis industri terkini.
             </p>
         </div>
-
+        
        <div class="space-y-28">
     
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">

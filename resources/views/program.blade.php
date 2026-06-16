@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Program Keahlian - SMK Al-Azhar Plus Bogor</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ asset('images/logo-alza.png') }}">
@@ -26,35 +27,44 @@
 
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-yellow-300 selection:text-green-900 transition-all duration-300 relative flex flex-col min-h-screen">
 
-    <nav class="w-full bg-white/95 backdrop-blur-sm shadow-sm fixed top-0 z-40 border-b border-slate-100" data-aos="fade-down" data-aos-duration="800">
-        <div class="container mx-auto px-6 py-4 flex items-center justify-between max-w-7xl">
-            <div class="flex-1 flex justify-start">
+    <nav class="w-full bg-white/95 backdrop-blur-sm shadow-sm fixed top-0 z-50 border-b border-slate-100" data-aos="fade-down" data-aos-duration="800">
+        <div class="container mx-auto px-4 md:px-6 py-3 md:py-4 flex flex-col md:flex-row items-center justify-between max-w-7xl gap-3 md:gap-0">
+            
+            <div class="w-full md:w-auto flex items-center justify-between md:justify-start md:flex-1">
                 <a href="/" class="flex items-center gap-3 group">
-                    <img src="{{ asset('images/logo-alza.png') }}" class="h-10 transition-transform group-hover:scale-105" alt="Logo" onerror="this.style.display='none'">
-                    <div class="hidden sm:block">
-                        <h1 class="font-extrabold text-green-900 leading-none text-lg tracking-tight">SMK AL-AZHAR</h1>
-                        <p class="text-[10px] font-bold text-yellow-500 tracking-widest uppercase mt-0.5">Plus Bogor</p>
+                    <img src="{{ asset('images/logo-alza.png') }}" class="h-8 md:h-10 transition-transform duration-300 group-hover:scale-105" alt="Logo">
+                    <div>
+                        <h1 class="font-extrabold text-green-900 leading-none text-sm md:text-lg tracking-tight">SMK AL-AZHAR</h1>
+                        <p class="text-[9px] md:text-[10px] font-bold text-yellow-500 tracking-widest uppercase mt-0.5">Plus Bogor</p>
                     </div>
                 </a>
-            </div>
-
-            <div class="hidden md:flex justify-center gap-8 items-center bg-slate-50 px-8 py-2.5 rounded-full border border-slate-100 shadow-inner">
-                <a href="/" class="text-sm font-semibold text-slate-500 hover:text-green-700 transition-colors">Beranda</a>
-                <a href="/profil" class="text-sm font-semibold text-slate-500 hover:text-green-700 transition-colors">Profil</a>
-                <a href="/program" class="text-sm font-bold text-green-700">Program Studi</a>
-                <a href="/galeri" class="text-sm font-semibold text-slate-500 hover:text-green-700 transition-colors">Galeri</a>
-            </div>
-
-            <div class="flex-1 flex justify-end gap-4 items-center">
-                @auth
-                    <a href="/admin/dashboard" class="bg-green-900 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-green-800 transition-colors shadow-md">Dashboard</a>
-                @else
-                    <a href="https://wa.me/6285210579586" target="_blank" class="hidden lg:flex items-center gap-2 text-sm font-bold text-green-800 hover:text-green-600 transition-colors">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                        Hubungi Kami
+                
+                <div class="md:hidden">
+                    <a href="https://wa.me/6285210579586" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-9 h-9 text-white bg-emerald-800 rounded-full hover:bg-emerald-900 transition-colors shadow-md">
+                        <i class="fab fa-whatsapp text-base"></i>
                     </a>
-                @endauth
+                </div>
             </div>
+
+            <div class="flex justify-center gap-4 md:gap-8 items-center bg-slate-50 px-5 md:px-8 py-2 rounded-full border border-slate-100 shadow-inner w-auto max-w-full overflow-x-auto whitespace-nowrap">
+                
+                <a href="/" class="text-xs md:text-sm transition-colors {{ request()->is('/') ? 'font-bold text-green-700' : 'font-semibold text-slate-500 hover:text-green-700' }}">Beranda</a>
+                
+                <a href="/profil" class="text-xs md:text-sm transition-colors {{ request()->is('profil*') ? 'font-bold text-green-700' : 'font-semibold text-slate-500 hover:text-green-700' }}">Profil</a>
+                
+                <a href="/program" class="text-xs md:text-sm transition-colors {{ request()->is('program*') ? 'font-bold text-green-700' : 'font-semibold text-slate-500 hover:text-green-700' }}">Program Studi</a>
+                
+                <a href="/galeri" class="text-xs md:text-sm transition-colors {{ request()->is('galeri*') ? 'font-bold text-green-700' : 'font-semibold text-slate-500 hover:text-green-700' }}">Galeri</a>
+            
+            </div>
+
+            <div class="hidden md:flex md:flex-1 justify-end items-center">
+                <a href="https://wa.me/6285210579586" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white bg-emerald-800 rounded-full hover:bg-emerald-900 transition-colors shadow-md">
+                    <i class="fab fa-whatsapp text-lg mr-2"></i> 
+                    <span>Hubungi Kami</span>
+                </a>
+            </div>
+            
         </div>
     </nav>
 
@@ -217,7 +227,7 @@
                 <h2 class="text-4xl md:text-5xl font-black text-slate-800 mb-8 tracking-tight">Siap Meraih Masa Depan <br><span class="text-green-700">Bersama Kami?</span></h2>
                 <p class="text-slate-600 mb-10 text-lg font-medium">Pendaftaran Peserta Didik Baru (PPDB) telah dibuka resmi. Bergabunglah sekarang dan jadilah bagian dari generasi unggul.</p>
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                    <a href="/pendaftaran" class="w-full sm:w-auto bg-green-700 hover:bg-green-800 text-white font-extrabold py-4 px-10 rounded-full transition-colors shadow-lg">Daftar Sekarang</a>
+                    <a href="https://wa.me/6285210579586" class="w-full sm:w-auto bg-green-700 hover:bg-green-800 text-white font-extrabold py-4 px-10 rounded-full transition-colors shadow-lg">Daftar Sekarang</a>
                     <a href="/profil" class="w-full sm:w-auto bg-white border-2 border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 font-bold py-4 px-10 rounded-full transition-colors">Kenali Profil Kami</a>
                 </div>
             </div>

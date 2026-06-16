@@ -22,20 +22,30 @@
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased h-screen flex overflow-hidden selection:bg-yellow-300 selection:text-green-900">
+<body class="bg-slate-50 text-slate-800 antialiased h-screen flex overflow-hidden selection:bg-yellow-300 selection:text-green-900 relative">
 
-    <aside class="w-[280px] bg-green-900 flex flex-col shadow-2xl shrink-0 z-50 relative overflow-hidden">
+    <!-- OVERLAY BACKGROUND (Hanya muncul di HP saat sidebar terbuka) -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/40 z-40 hidden md:hidden transition-opacity duration-300 opacity-0" onclick="toggleSidebar()"></div>
+
+    <!-- SIDEBAR: Sembunyi di HP (-translate-x-full), Selalu tampil di laptop (md:translate-x-0) -->
+    <aside id="admin-sidebar" class="fixed inset-y-0 left-0 w-[280px] bg-green-900 flex flex-col shadow-2xl z-50 overflow-hidden transform -translate-x-full md:translate-x-0 md:relative transition-transform duration-300 ease-in-out shrink-0">
         
         <div class="absolute inset-0 bg-pattern-light opacity-30 pointer-events-none"></div>
         <div class="absolute top-0 right-0 w-64 h-64 bg-yellow-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
         
-        <div class="h-24 flex items-center gap-3.5 px-8 border-b border-white/10 relative z-10 shrink-0 bg-green-950/30">
-            <img src="{{ asset('images/logo-alza.png') }}" class="w-11 h-11 object-contain bg-white rounded-xl shadow-lg border-2 border-yellow-400 shrink-0 p-1" alt="Logo SMK Al-Azhar Plus">
-            
-            <div class="flex flex-col justify-center">
-                <h1 class="font-extrabold text-white tracking-wide text-[15px] leading-tight">Al-Azhar Plus</h1>
-                <span class="text-[10px] text-yellow-400 font-bold tracking-widest uppercase mt-0.5">Ruang Admin</span>
+        <!-- Header Sidebar dengan Tombol Close khusus Mobile -->
+        <div class="h-24 flex items-center justify-between px-6 border-b border-white/10 relative z-10 shrink-0 bg-green-950/30">
+            <div class="flex items-center gap-3.5">
+                <img src="{{ asset('images/logo-alza.png') }}" class="w-11 h-11 object-contain bg-white rounded-xl shadow-lg border-2 border-yellow-400 shrink-0 p-1" alt="Logo SMK Al-Azhar Plus">
+                <div class="flex flex-col justify-center">
+                    <h1 class="font-extrabold text-white tracking-wide text-[15px] leading-tight">Al-Azhar Plus</h1>
+                    <span class="text-[10px] text-yellow-400 font-bold tracking-widest uppercase mt-0.5">Ruang Admin</span>
+                </div>
             </div>
+            <!-- Tombol Close Sidebar (Hanya di Mobile) -->
+            <button onclick="toggleSidebar()" class="text-green-200 hover:text-white p-1 rounded-lg hover:bg-green-800 md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
         </div>
 
         <div class="flex-1 overflow-y-auto py-6 px-5 space-y-2 relative z-10">
@@ -73,40 +83,69 @@
         </div>
     </aside>
 
-    <main class="flex-1 flex flex-col h-screen overflow-hidden relative bg-slate-50">
+    <!-- KONTEN UTAMA MAIN -->
+    <main class="flex-1 flex flex-col h-screen overflow-hidden relative bg-slate-50 w-full">
         
-        <header class="h-20 bg-white border-b-4 border-yellow-400 px-8 flex items-center justify-between z-40 shrink-0 sticky top-0 shadow-sm">
+        <header class="h-20 bg-white border-b-4 border-yellow-400 px-4 md:px-8 flex items-center justify-between z-40 shrink-0 sticky top-0 shadow-sm">
             
             <div class="flex items-center gap-3">
-                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                <h2 class="text-sm font-bold text-slate-500 uppercase tracking-widest hidden md:block">Panel Administrator</h2>
+                <!-- Tambah Tombol Hamburger Menu (Hanya muncul di HP) -->
+                <button onclick="toggleSidebar()" class="p-2 -ml-2 rounded-lg text-slate-600 hover:bg-slate-100 active:bg-slate-200 block md:hidden focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse hidden sm:block"></div>
+                <h2 class="text-sm font-bold text-slate-500 uppercase tracking-widest hidden sm:block">Panel Administrator</h2>
             </div>
 
-            <div class="flex items-center gap-5">
-                <a href="/" target="_blank" class="text-xs font-bold text-slate-500 hover:text-green-700 transition-all duration-300 flex items-center gap-2 bg-slate-100 hover:bg-green-50 px-4 py-2 rounded-lg border border-slate-200">
+            <div class="flex items-center gap-3 md:gap-5">
+                <a href="/" target="_blank" class="text-[11px] md:text-xs font-bold text-slate-500 hover:text-green-700 transition-all duration-300 flex items-center gap-1.5 bg-slate-100 hover:bg-green-50 px-3 py-2 rounded-lg border border-slate-200">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                    Lihat Web Publik
+                    <span class="hidden xs:block">Lihat Web Publik</span>
                 </a>
                 
                 <div class="h-6 w-px bg-slate-200"></div>
                 
-                <div class="flex items-center gap-3">
-                    <div class="text-right hidden sm:block">
-                        <p class="text-sm font-bold text-slate-800">{{ auth()->user()->name ?? 'Administrator' }}</p>
+                <div class="flex items-center gap-2 md:gap-3">
+                    <div class="text-right hidden lg:block">
+                        <p class="text-sm font-bold text-slate-800 leading-none">{{ auth()->user()->name ?? 'Administrator' }}</p>
                     </div>
-                    <div class="w-10 h-10 bg-green-900 text-yellow-400 rounded-full flex items-center justify-center font-black text-lg border-2 border-white shadow-md">
+                    <div class="w-9 h-9 md:w-10 md:h-10 bg-green-900 text-yellow-400 rounded-full flex items-center justify-center font-black text-base md:text-lg border-2 border-white shadow-md shrink-0">
                         {{ substr(auth()->user()->name ?? 'A', 0, 1) }}
                     </div>
                 </div>
             </div>
         </header>
 
-        <div class="flex-1 overflow-y-auto px-8 py-10 relative">
+        <!-- Area Isi @yield('content') dengan Padding Responsif -->
+        <div class="flex-1 overflow-y-auto px-4 py-6 md:px-8 md:py-10 relative">
             <div class="max-w-7xl mx-auto">
                 @yield('content')
             </div>
         </div>
     </main>
 
+    <!-- SCRIPT VANILLA JS UNTUK EVENT ONCLICK SIDEBAR -->
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('admin-sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            
+            if (sidebar.classList.contains('-translate-x-full')) {
+                // Membuka Sidebar
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => {
+                    overlay.classList.add('opacity-100');
+                }, 20);
+            } else {
+                // Menutup Sidebar
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.remove('opacity-100');
+                setTimeout(() => {
+                    overlay.classList.add('hidden');
+                }, 300);
+            }
+        }
+    </script>
 </body>
 </html>
