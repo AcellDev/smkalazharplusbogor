@@ -31,46 +31,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-300 selection:text-emerald-900">
 
-   <nav class="w-full bg-white/95 backdrop-blur-sm shadow-sm fixed top-0 z-50 border-b border-slate-100" data-aos="fade-down" data-aos-duration="800">
-        <div class="container mx-auto px-4 md:px-6 py-3 md:py-4 flex flex-col md:flex-row items-center justify-between max-w-7xl gap-3 md:gap-0">
-            
-            <div class="w-full md:w-auto flex items-center justify-between md:justify-start md:flex-1">
-                <a href="/" class="flex items-center gap-3 group">
-                    <img src="{{ asset('images/logo-alza.png') }}" class="h-8 md:h-10 transition-transform duration-300 group-hover:scale-105" alt="Logo">
-                    <div>
-                        <h1 class="font-extrabold text-green-900 leading-none text-sm md:text-lg tracking-tight">SMK AL-AZHAR</h1>
-                        <p class="text-[9px] md:text-[10px] font-bold text-yellow-500 tracking-widest uppercase mt-0.5">Plus Bogor</p>
-                    </div>
-                </a>
-                
-                <div class="md:hidden">
-                    <a href="https://wa.me/6285210579586" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-9 h-9 text-white bg-emerald-800 rounded-full hover:bg-emerald-900 transition-colors shadow-md">
-                        <i class="fab fa-whatsapp text-base"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="flex justify-center gap-4 md:gap-8 items-center bg-slate-50 px-5 md:px-8 py-2 rounded-full border border-slate-100 shadow-inner w-auto max-w-full overflow-x-auto whitespace-nowrap">
-                
-                <a href="/" class="text-xs md:text-sm transition-colors {{ request()->is('/') ? 'font-bold text-green-700' : 'font-semibold text-slate-500 hover:text-green-700' }}">Beranda</a>
-                
-                <a href="/profil" class="text-xs md:text-sm transition-colors {{ request()->is('profil*') ? 'font-bold text-green-700' : 'font-semibold text-slate-500 hover:text-green-700' }}">Profil</a>
-                
-                <a href="/program" class="text-xs md:text-sm transition-colors {{ request()->is('program*') ? 'font-bold text-green-700' : 'font-semibold text-slate-500 hover:text-green-700' }}">Program Studi</a>
-                
-                <a href="/galeri" class="text-xs md:text-sm transition-colors {{ request()->is('galeri*') ? 'font-bold text-green-700' : 'font-semibold text-slate-500 hover:text-green-700' }}">Galeri</a>
-            
-            </div>
-
-            <div class="hidden md:flex md:flex-1 justify-end items-center">
-                <a href="https://wa.me/6285210579586" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white bg-emerald-800 rounded-full hover:bg-emerald-900 transition-colors shadow-md">
-                    <i class="fab fa-whatsapp text-lg mr-2"></i> 
-                    <span>Hubungi Kami</span>
-                </a>
-            </div>
-            
-        </div>
-    </nav>
+   @include('layouts.navbar')
 
     <section class="relative pt-40 pb-32 bg-emerald-950 overflow-hidden">
        <div class="absolute inset-0 bg-gradient-to-b from-green-900/70 via-green-900/60 to-green-950/90"></div>
