@@ -207,7 +207,7 @@
         </div>
     </section>
 
-    <section class="py-20 bg-dots-green relative overflow-hidden">
+   <section class="py-20 bg-dots-green relative overflow-hidden">
     <!-- Overlay diubah menjadi z-0 dan diturunkan sedikit opacity-nya agar dot pattern di background (z-index dasar) tetap kontras dan menyala -->
     <div class="absolute inset-0 bg-green-950/70 pointer-events-none z-0"></div>
 
@@ -222,104 +222,109 @@
                 </p>
             </div>
 
-            <div class="lg:col-span-7 h-[250px]" data-aos="fade-left">
+            <!-- PERBAIKAN: Mengubah h-[250px] menjadi h-auto di mobile, dan lg:h-[280px] di desktop agar konten leluasa -->
+            <div class="lg:col-span-7 h-auto lg:h-[280px] w-full" data-aos="fade-left">
                 <div class="swiper teacherVerticalSwiper h-full w-full">
                     <div class="swiper-wrapper">
-                        <!-- Isi Swiper Slide tetap sama seperti kode aslimu -->
-                        <div class="swiper-slide flex flex-col justify-center">
-                            <div class="grid sm:grid-cols-2 gap-x-8 gap-y-10">
+                        
+                        <!-- Slide 1 -->
+                        <div class="swiper-slide flex flex-col justify-center py-4">
+                            <!-- Menggunakan grid-cols-1 di mobile dan sm:grid-cols-2 di tablet/desktop -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 sm:gap-y-10">
                                 <div class="flex items-center gap-5">
-                                    <img src="images/guru/bu_aida.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md" alt="Guru">
+                                    <img src="images/guru/bu_aida.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md flex-shrink-0" alt="Guru">
                                     <div>
-                                        <h4 class="text-white font-bold text-lg">Aida Rahma, S.Si</h4>
-                                        <p class="text-yellow-400 text-sm font-semibold">Guru Matematika</p>
+                                        <h4 class="text-white font-bold text-lg leading-tight">Aida Rahma, S.Si</h4>
+                                        <p class="text-yellow-400 text-sm font-semibold mt-1">Guru Matematika</p>
                                     </div>
                                 </div>
                                 <div class="flex items-center gap-5">
-                                    <img src="images/guru/pak_ilham.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md" alt="Guru">
+                                    <img src="images/guru/pak_ilham.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md flex-shrink-0" alt="Guru">
                                     <div>
-                                        <h4 class="text-white font-bold text-lg">M. Ilham Azhari, S.Pd., M.Pd</h4>
-                                        <p class="text-yellow-400 text-sm font-semibold">Guru Bahasa Inggris</p>
+                                        <h4 class="text-white font-bold text-lg leading-tight">M. Ilham Azhari, S.Pd., M.Pd</h4>
+                                        <p class="text-yellow-400 text-sm font-semibold mt-1">Guru Bahasa Inggris</p>
                                     </div>
                                 </div>
                                 <div class="flex items-center gap-5">
-                                    <img src="images/guru/pak_gugah.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md" alt="Guru">
+                                    <img src="images/guru/pak_gugah.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md flex-shrink-0" alt="Guru">
                                     <div>
-                                        <h4 class="text-white font-bold text-lg">Gugah Gumbira, S.Kom</h4>
-                                        <p class="text-yellow-400 text-sm font-semibold">Guru DKV & Kewirausahaan</p>
+                                        <h4 class="text-white font-bold text-lg leading-tight">Gugah Gumbira, S.Kom</h4>
+                                        <p class="text-yellow-400 text-sm font-semibold mt-1">Guru DKV & Kewirausahaan</p>
                                     </div>
                                 </div>
                                 <div class="flex items-center gap-5">
-                                    <img src="images/guru/bu_anna.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md" alt="Guru">
+                                    <img src="images/guru/bu_anna.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md flex-shrink-0" alt="Guru">
                                     <div>
-                                        <h4 class="text-white font-bold text-lg">Muzzayanah, S.Th.I</h4>
-                                        <p class="text-yellow-400 text-sm font-semibold">Guru Tahfidz & Tahsin</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide flex flex-col justify-center">
-                            <div class="grid sm:grid-cols-2 gap-x-8 gap-y-10">
-                                <div class="flex items-center gap-5">
-                                    <img src="images/guru/pak_wahyu.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md" alt="Guru">
-                                    <div>
-                                        <h4 class="text-white font-bold text-lg">Wahyu Darmawan, S.M</h4>
-                                        <p class="text-yellow-400 text-sm font-semibold">Guru PJOK & MPLB</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-5">
-                                    <img src="images/guru/bu_baeti.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md" alt="Guru">
-                                    <div>
-                                        <h4 class="text-white font-bold text-lg">Baeti Sehaeni, S.Pd.I</h4>
-                                        <p class="text-yellow-400 text-sm font-semibold">Guru PABP</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-5">
-                                    <img src="images/guru/kak_ranti.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md" alt="Guru">
-                                    <div>
-                                        <h4 class="text-white font-bold text-lg">Ranti Gusmawati</h4>
-                                        <p class="text-yellow-400 text-sm font-semibold">Guru IPAS & Seni Budaya</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-5">
-                                    <img src="images/guru/kak_feby.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md" alt="Guru">
-                                    <div>
-                                        <h4 class="text-white font-bold text-lg">Feby Aulia Ayundita</h4>
-                                        <p class="text-yellow-400 text-sm font-semibold">Guru MPLB</p>
+                                        <h4 class="text-white font-bold text-lg leading-tight">Muzzayanah, S.Th.I</h4>
+                                        <p class="text-yellow-400 text-sm font-semibold mt-1">Guru Tahfidz & Tahsin</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="swiper-slide flex flex-col justify-center">
-                            <div class="grid sm:grid-cols-2 gap-x-8 gap-y-10">
+                        <!-- Slide 2 -->
+                        <div class="swiper-slide flex flex-col justify-center py-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 sm:gap-y-10">
                                 <div class="flex items-center gap-5">
-                                    <img src="images/guru/bu_dede.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md" alt="Guru">
+                                    <img src="images/guru/pak_wahyu.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md flex-shrink-0" alt="Guru">
                                     <div>
-                                        <h4 class="text-white font-bold text-lg">Dede Maryati, S.Pd</h4>
-                                        <p class="text-yellow-400 text-sm font-semibold">Kepala Program & Guru MPLB</p>
+                                        <h4 class="text-white font-bold text-lg leading-tight">Wahyu Darmawan, S.M</h4>
+                                        <p class="text-yellow-400 text-sm font-semibold mt-1">Guru PJOK & MPLB</p>
                                     </div>
                                 </div>
                                 <div class="flex items-center gap-5">
-                                    <img src="images/guru/bu_elies.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md" alt="Guru">
+                                    <img src="images/guru/bu_baeti.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md flex-shrink-0" alt="Guru">
                                     <div>
-                                        <h4 class="text-white font-bold text-lg">Elies Lustiana</h4>
-                                        <p class="text-yellow-400 text-sm font-semibold">Wakasek Humas & Guru</p>
+                                        <h4 class="text-white font-bold text-lg leading-tight">Baeti Sehaeni, S.Pd.I</h4>
+                                        <p class="text-yellow-400 text-sm font-semibold mt-1">Guru PABP</p>
                                     </div>
                                 </div>
                                 <div class="flex items-center gap-5">
-                                    <img src="images/guru/bu_mar.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md" alt="Guru">
+                                    <img src="images/guru/kak_ranti.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md flex-shrink-0" alt="Guru">
                                     <div>
-                                        <h4 class="text-white font-bold text-lg">Siti Mardiah, S.Kom</h4>
-                                        <p class="text-yellow-400 text-sm font-semibold">Wakasek Kurikulum & KKG</p>
+                                        <h4 class="text-white font-bold text-lg leading-tight">Ranti Gusmawati</h4>
+                                        <p class="text-yellow-400 text-sm font-semibold mt-1">Guru IPAS & Seni Budaya</p>
                                     </div>
                                 </div>
                                 <div class="flex items-center gap-5">
-                                    <img src="images/guru/pak_dani.png" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md" alt="Guru">
+                                    <img src="images/guru/kak_feby.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md flex-shrink-0" alt="Guru">
                                     <div>
-                                        <h4 class="text-white font-bold text-lg">Ahmad Hamdani, S.Pd</h4>
-                                        <p class="text-yellow-400 text-sm font-semibold">Al-Qur'an Hadits & B. Inggris</p>
+                                        <h4 class="text-white font-bold text-lg leading-tight">Feby Aulia Ayundita</h4>
+                                        <p class="text-yellow-400 text-sm font-semibold mt-1">Guru MPLB</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="swiper-slide flex flex-col justify-center py-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 sm:gap-y-10">
+                                <div class="flex items-center gap-5">
+                                    <img src="images/guru/bu_dede.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md flex-shrink-0" alt="Guru">
+                                    <div>
+                                        <h4 class="text-white font-bold text-lg leading-tight">Dede Maryati, S.Pd</h4>
+                                        <p class="text-yellow-400 text-sm font-semibold mt-1">Kepala Program & Guru MPLB</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-5">
+                                    <img src="images/guru/bu_elies.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md flex-shrink-0" alt="Guru">
+                                    <div>
+                                        <h4 class="text-white font-bold text-lg leading-tight">Elies Lustiana</h4>
+                                        <p class="text-yellow-400 text-sm font-semibold mt-1">Wakasek Humas & Guru</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-5">
+                                    <img src="images/guru/bu_mar.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md flex-shrink-0" alt="Guru">
+                                    <div>
+                                        <h4 class="text-white font-bold text-lg leading-tight">Siti Mardiah, S.Kom</h4>
+                                        <p class="text-yellow-400 text-sm font-semibold mt-1">Wakasek Kurikulum & KKG</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-5">
+                                    <img src="images/guru/pak_dani.png" class="w-16 h-16 rounded-full object-cover border-2 border-green-700 shadow-md flex-shrink-0" alt="Guru">
+                                    <div>
+                                        <h4 class="text-white font-bold text-lg leading-tight">Ahmad Hamdani, S.Pd</h4>
+                                        <p class="text-yellow-400 text-sm font-semibold mt-1">Al-Qur'an Hadits & B. Inggris</p>
                                     </div>
                                 </div>
                             </div>
@@ -331,7 +336,7 @@
 
         </div>
     </div>
-    </section>
+</section>
 
    <section class="py-24 bg-dots-white relative border-t border-b border-slate-200 overflow-hidden">
     
