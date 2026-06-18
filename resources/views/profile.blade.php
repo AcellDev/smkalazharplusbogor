@@ -338,96 +338,135 @@
     </div>
 </section>
 
-   <section class="py-24 bg-dots-white relative border-t border-b border-slate-200 overflow-hidden">
-    
-    <!-- Gradient Overlay lembut agar dot pattern memudar di bagian ujung border atas/bawah -->
-    <div class="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 pointer-events-none z-0"></div>
+  <section class="py-20 bg-dots-green relative overflow-hidden">
+    <!-- Overlay latar belakang hitam-hijau -->
+    <div class="absolute inset-0 bg-green-950/70 pointer-events-none z-0"></div>
 
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10" data-aos="fade-up">
-        
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-black text-gray-900 tracking-tight sm:text-4xl mb-4">
-                Mitra Industri & Institusi
-            </h2>
-            <p class="text-base lg:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
-                SMK Al-Azhar Plus Bogor bekerja sama dengan 14 institusi terpercaya untuk menyelaraskan kurikulum dengan standar dunia kerja.
-            </p>
-        </div>
-
-        <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
+    <div class="container mx-auto px-6 max-w-7xl relative z-10">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
             
-            <div class="w-[45%] sm:w-40 md:w-48 aspect-[3/2] bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-                <img src="{{ asset('images/mitra/bogor.jpg') }}" alt="Mitra 1" 
-                     class="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
+            <!-- Kolom Kiri: Judul & Deskripsi -->
+            <div class="lg:col-span-5" data-aos="fade-right">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">Tenaga Pendidik <br> & Kependidikan</h2>
+                <p class="text-green-50/80 text-lg leading-relaxed font-medium max-w-md">
+                    Kami didukung oleh barisan pengajar profesional, tersertifikasi, dan berdedikasi tinggi yang siap membimbing siswa-siswi meraih prestasi terbaik mereka.
+                </p>
             </div>
 
-            <div class="w-[45%] sm:w-40 md:w-48 aspect-[3/2] bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-                <img src="{{ asset('images/mitra/dinaslingkungan.png') }}" alt="Mitra 2" 
-                     class="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
+            <!-- Kolom Kanan: Swiper Vertikal -->
+            <!-- PERBAIKAN UTAMA: Mengunci tinggi pasti di setiap breakpoint layar agar kalkulasi Swiper Vertikal sempurna -->
+            <div class="lg:col-span-7 h-[450px] sm:h-[260px] lg:h-[280px] w-full overflow-hidden" data-aos="fade-left">
+                <div class="swiper teacherVerticalSwiper h-full w-full">
+                    <div class="swiper-wrapper">
+                        
+                        <!-- Slide 1 -->
+                        <div class="swiper-slide flex flex-col justify-center py-2">
+                            <!-- Menggunakan gap yang pas dan col-1 di HP, col-2 di tablet ke atas -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                                <div class="flex items-center gap-4 bg-white/5 p-3 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <img src="images/guru/bu_aida.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-green-600 shadow-md flex-shrink-0" alt="Guru">
+                                    <div>
+                                        <h4 class="text-white font-bold text-base leading-tight">Aida Rahma, S.Si</h4>
+                                        <p class="text-yellow-400 text-xs font-semibold mt-0.5">Guru Matematika</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 bg-white/5 p-3 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <img src="images/guru/pak_ilham.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-green-600 shadow-md flex-shrink-0" alt="Guru">
+                                    <div>
+                                        <h4 class="text-white font-bold text-base leading-tight">M. Ilham Azhari, S.Pd., M.Pd</h4>
+                                        <p class="text-yellow-400 text-xs font-semibold mt-0.5">Guru Bahasa Inggris</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 bg-white/5 p-3 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <img src="images/guru/pak_gugah.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-green-600 shadow-md flex-shrink-0" alt="Guru">
+                                    <div>
+                                        <h4 class="text-white font-bold text-base leading-tight">Gugah Gumbira, S.Kom</h4>
+                                        <p class="text-yellow-400 text-xs font-semibold mt-0.5">Guru DKV & Kewirausahaan</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 bg-white/5 p-3 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <img src="images/guru/bu_anna.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-green-600 shadow-md flex-shrink-0" alt="Guru">
+                                    <div>
+                                        <h4 class="text-white font-bold text-base leading-tight">Muzzayanah, S.Th.I</h4>
+                                        <p class="text-yellow-400 text-xs font-semibold mt-0.5">Guru Tahfidz & Tahsin</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="swiper-slide flex flex-col justify-center py-2">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                                <div class="flex items-center gap-4 bg-white/5 p-3 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <img src="images/guru/pak_wahyu.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-green-600 shadow-md flex-shrink-0" alt="Guru">
+                                    <div>
+                                        <h4 class="text-white font-bold text-base leading-tight">Wahyu Darmawan, S.M</h4>
+                                        <p class="text-yellow-400 text-xs font-semibold mt-0.5">Guru PJOK & MPLB</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 bg-white/5 p-3 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <img src="images/guru/bu_baeti.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-green-600 shadow-md flex-shrink-0" alt="Guru">
+                                    <div>
+                                        <h4 class="text-white font-bold text-base leading-tight">Baeti Sehaeni, S.Pd.I</h4>
+                                        <p class="text-yellow-400 text-xs font-semibold mt-0.5">Guru PABP</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 bg-white/5 p-3 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <img src="images/guru/kak_ranti.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-green-600 shadow-md flex-shrink-0" alt="Guru">
+                                    <div>
+                                        <h4 class="text-white font-bold text-base leading-tight">Ranti Gusmawati</h4>
+                                        <p class="text-yellow-400 text-xs font-semibold mt-0.5">Guru IPAS & Seni Budaya</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 bg-white/5 p-3 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <img src="images/guru/kak_feby.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-green-600 shadow-md flex-shrink-0" alt="Guru">
+                                    <div>
+                                        <h4 class="text-white font-bold text-base leading-tight">Feby Aulia Ayundita</h4>
+                                        <p class="text-yellow-400 text-xs font-semibold mt-0.5">Guru MPLB</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="swiper-slide flex flex-col justify-center py-2">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                                <div class="flex items-center gap-4 bg-white/5 p-3 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <img src="images/guru/bu_dede.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-green-600 shadow-md flex-shrink-0" alt="Guru">
+                                    <div>
+                                        <h4 class="text-white font-bold text-base leading-tight">Dede Maryati, S.Pd</h4>
+                                        <p class="text-yellow-400 text-xs font-semibold mt-0.5">Kepala Program & Guru MPLB</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 bg-white/5 p-3 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <img src="images/guru/bu_elies.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-green-600 shadow-md flex-shrink-0" alt="Guru">
+                                    <div>
+                                        <h4 class="text-white font-bold text-base leading-tight">Elies Lustiana</h4>
+                                        <p class="text-yellow-400 text-xs font-semibold mt-0.5">Wakasek Humas & Guru</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 bg-white/5 p-3 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <img src="images/guru/bu_mar.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-green-600 shadow-md flex-shrink-0" alt="Guru">
+                                    <div>
+                                        <h4 class="text-white font-bold text-base leading-tight">Siti Mardiah, S.Kom</h4>
+                                        <p class="text-yellow-400 text-xs font-semibold mt-0.5">Wakasek Kurikulum & KKG</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 bg-white/5 p-3 rounded-xl border border-white/10 backdrop-blur-sm">
+                                    <img src="images/guru/pak_dani.png" class="w-14 h-14 rounded-full object-cover border-2 border-green-600 shadow-md flex-shrink-0" alt="Guru">
+                                    <div>
+                                        <h4 class="text-white font-bold text-base leading-tight">Ahmad Hamdani, S.Pd</h4>
+                                        <p class="text-yellow-400 text-xs font-semibold mt-0.5">Al-Qur'an Hadits & B. Inggris</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
-            <div class="w-[45%] sm:w-40 md:w-48 aspect-[3/2] bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-                <img src="{{ asset('images/mitra/satya.jpg') }}" alt="Mitra 3" 
-                     class="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-            </div>
-
-            <div class="w-[45%] sm:w-40 md:w-48 aspect-[3/2] bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-                <img src="{{ asset('images/mitra/sayaga.png') }}" alt="Mitra 4" 
-                     class="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-            </div>
-
-            <div class="w-[45%] sm:w-40 md:w-48 aspect-[3/2] bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-                <img src="{{ asset('images/mitra/satya.jpg') }}" alt="Mitra 5" 
-                     class="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-            </div>
-
-            <div class="w-[45%] sm:w-40 md:w-48 aspect-[3/2] bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-                <img src="{{ asset('images/mitra/brin.png') }}" alt="Mitra 6" 
-                     class="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-            </div>
-
-            <div class="w-[45%] sm:w-40 md:w-48 aspect-[3/2] bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-                <img src="{{ asset('images/mitra/ipb.png') }}" alt="Mitra 7" 
-                     class="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-            </div>
-
-            <div class="w-[45%] sm:w-40 md:w-48 aspect-[3/2] bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-                <img src="{{ asset('images/mitra/ibik.png') }}" alt="Mitra 8" 
-                     class="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-            </div>
-
-            <div class="w-[45%] sm:w-40 md:w-48 aspect-[3/2] bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-                <img src="{{ asset('images/mitra/unbin.png') }}" alt="Mitra 9" 
-                     class="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-            </div>
-
-            <div class="w-[45%] sm:w-40 md:w-48 aspect-[3/2] bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-                <img src="{{ asset('images/mitra/biru kuning.jpg') }}" alt="Mitra 10" 
-                     class="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-            </div>
-
-            <div class="w-[45%] sm:w-40 md:w-48 aspect-[3/2] bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-                <img src="{{ asset('images/mitra/pg.png') }}" alt="Mitra 11" 
-                     class="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-            </div>
-
-            <div class="w-[45%] sm:w-40 md:w-48 aspect-[3/2] bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-                <img src="{{ asset('images/mitra/fabercastell.png') }}" alt="Mitra 12" 
-                     class="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-            </div>
-
-            <div class="w-[45%] sm:w-40 md:w-48 aspect-[3/2] bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-                <img src="{{ asset('images/mitra/mbg.png') }}" alt="Mitra 13" 
-                     class="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-            </div>
-
-            <div class="w-[45%] sm:w-40 md:w-48 aspect-[3/2] bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-                <img src="{{ asset('images/mitra/mekaar.webp') }}" alt="Mitra 14" 
-                     class="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-            </div>
-            
         </div>
-
     </div>
 </section>
 
