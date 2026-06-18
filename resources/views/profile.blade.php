@@ -362,7 +362,7 @@
             </div>
 
             <div class="w-[45%] sm:w-40 md:w-48 aspect-[3/2] bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-                <img src="{{ asset('images/mitra/dinaslingkungan.jpg') }}" alt="Mitra 2" 
+                <img src="{{ asset('images/mitra/dinaslingkungan.png') }}" alt="Mitra 2" 
                      class="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
             </div>
 
@@ -412,7 +412,7 @@
             </div>
 
             <div class="w-[45%] sm:w-40 md:w-48 aspect-[3/2] bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-                <img src="{{ asset('images/mitra/fabercastel.png') }}" alt="Mitra 12" 
+                <img src="{{ asset('images/mitra/fabercastell.png') }}" alt="Mitra 12" 
                      class="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
             </div>
 
