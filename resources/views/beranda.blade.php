@@ -216,7 +216,7 @@
                 <div class="absolute -inset-2 rounded-2xl bg-gradient-to-r from-emerald-500 to-amber-400 opacity-10 blur-xl group-hover:opacity-20 transition duration-500"></div>
                 <div class="relative aspect-[16/10] overflow-hidden rounded-2xl bg-gray-100 shadow-md auto-carousel">
                     <img src="images/jurusan/dkv1.JPG" alt="DKV Showcase 1" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100 transform group-hover:scale-105">
-                    <img src="images/jurusan/dkV2.JPG" alt="DKV Showcase 2" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0 transform group-hover:scale-105">
+                    <img src="images/jurusan/dkv2.JPG" alt="DKV Showcase 2" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0 transform group-hover:scale-105">
                     <img src="images/jurusan/dkv3.JPG" alt="DKV Showcase 3" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0 transform group-hover:scale-105">
                     <img src="images/jurusan/dkv4.JPG" alt="DKV Showcase 4" class="carousel-item absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0 transform group-hover:scale-105">
 
