@@ -24,7 +24,7 @@ class JurusanController extends Controller
         'singkatan' => 'required',
         'deskripsi' => 'required',
         'gambar' => 'required|array', 
-        'gambar.*' => 'image|mimes:jpeg,png,jpg,webp|max:2048', 
+        'gambar.*' => 'image|mimes:jpeg,png,jpg,webp', 
     ]);
 
     $data = $request->all();
@@ -57,7 +57,7 @@ class JurusanController extends Controller
         'singkatan' => 'required',
         'deskripsi' => 'required',
         'gambar' => 'nullable|array',
-        'gambar.*' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
+        'gambar.*' => 'image|mimes:jpeg,png,jpg,webp',
     ]);
 
     $jurusan = \App\Models\Jurusan::findOrFail($id);

@@ -26,13 +26,13 @@
         <!-- Tombol WhatsApp Kanan (Bukan Bulatan Aneh Lagi) -->
         <div class="flex items-center flex-shrink-0">
             <!-- Versi Desktop (Tombol Panjang) -->
-            <a href="https://wa.me/6285210579586" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold text-white bg-emerald-800 rounded-full hover:bg-emerald-900 transition-colors shadow-md gap-2">
+            <a href="https://wa.me/6281318690627" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold text-white bg-emerald-800 rounded-full hover:bg-emerald-900 transition-colors shadow-md gap-2">
                 <i class="fab fa-whatsapp text-lg"></i> 
                 <span>Hubungi Kami</span>
             </a>
-            
+
             <!-- Versi Mobile (Bulat Ringkas Khusus Layar HP) -->
-            <a href="https://wa.me/6285210579586" target="_blank" rel="noopener noreferrer" class="inline-flex md:hidden items-center justify-center w-10 h-10 text-white bg-emerald-800 rounded-full hover:bg-emerald-900 transition-colors shadow-md">
+            <a href="https://wa.me/6281318690627" target="_blank" rel="noopener noreferrer" class="inline-flex md:hidden items-center justify-center w-10 h-10 text-white bg-emerald-800 rounded-full hover:bg-emerald-900 transition-colors shadow-md">
                 <i class="fab fa-whatsapp text-lg"></i>
             </a>
         </div>

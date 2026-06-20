@@ -24,7 +24,7 @@ class GaleriController extends Controller
         $request->validate([
             'judul' => 'required',
             'kategori' => 'required',
-            'foto' => 'required|image|mimes:jpg,png,jpeg|max:2048'
+            'foto' => 'required|image|mimes:jpg,png,jpeg'
         ]);
 
         $file = $request->file('foto');
