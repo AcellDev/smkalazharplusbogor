@@ -58,8 +58,7 @@
 
                         <div>
                             <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Dokumentasi Gambar <span class="text-[10px] text-slate-400 font-normal">(Ukuran gambar maks. 2MB)</span></label>
-                            <input type="file" name="gambar[]" multiple class="w-full border border-slate-200 rounded-2xl p-2.5 bg-slate-50 text-xs file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-slate-900 file:text-white hover:file:bg-slate-800 transition-all cursor-pointer" accept="image/*" required>
-                        </div>
+<input type="file" name="gambar[]" multiple class="w-full border border-slate-200 rounded-2xl p-2.5 bg-slate-50 text-xs file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-slate-900 file:text-white hover:file:bg-slate-800 transition-all cursor-pointer" accept="image/*">                        </div>
 
                         <div>
                             <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Deskripsi Kompetensi</label>
