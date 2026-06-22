@@ -17,40 +17,54 @@ class JurusanController extends Controller
 
     // 2. TAMBAH DATA (GAMBAR DIBUAT OPSIONAL UTK BYPASS HOSTING)
     public function store(Request $request)
-    {
-        // Validasi teks saja yang wajib, gambar dibuat nullable agar server hosting tidak crash
-        $request->validate([
-            'nama' => 'required',
-            'singkatan' => 'required',
-            'deskripsi' => 'required',
-            'gambar' => 'nullable|array', 
-        ]);
+{
+    // 1. Validasi teksnya saja. Pengecekan file kita lepas dari Laravel biar gak di-blok server
+    $request->validate([
+        'nama' => 'required',
+        'singkatan' => 'required',
+        'deskripsi' => 'required',
+    ]);
 
-        $data = $request->all();
-        $images = [];
+    // 2. Ambil data teks
+    $data = [
+        'nama'      => $request->nama,
+        'singkatan' => $request->singkatan,
+        'deskripsi' => $request->deskripsi,
+    ];
 
-        if ($request->hasFile('gambar')) {
-            foreach ($request->file('gambar') as $file) {
-                $ext = strtolower($file->getClientOriginalExtension());
-                if (in_array($ext, ['jpeg', 'png', 'jpg', 'webp'])) {
-                    $nama_file = time() . "_" . uniqid() . "." . $ext;
-                    $file->move(public_path('images/jurusan'), $nama_file);
-                    $images[] = $nama_file;
-                }
+    $images = [];
+
+    // 3. Langsung eksekusi pemindahan file fisik tanpa babak belu validasi strict
+    if ($request->hasFile('gambar')) {
+        foreach ($request->file('gambar') as $file) {
+            // Ambil ekstensi asli file (contoh: png, jpg)
+            $ext = strtolower($file->getClientOriginalExtension());
+            
+            // Filter manual formatnya biar aman
+            if (in_array($ext, ['jpeg', 'png', 'jpg', 'webp'])) {
+                // Bikin nama unik
+                $nama_file = time() . "_" . uniqid() . "." . $ext;
+                
+                // LANGSUNG dipaksa pindah ke folder public/images/jurusan
+                $file->move(public_path('images/jurusan'), $nama_file);
+                
+                // Masukkan nama file ke array
+                $images[] = $nama_file;
             }
         }
-
-        // JIKA SERVER HOSTING GAGAL/KOSONG, KITA BERI NAMA DEFAULT BERDASARKAN SINGKATAN JURUSAN
-        if (empty($images)) {
-            $images[] = strtolower($request->singkatan) . '.png';
-        }
-
-        $data['gambar'] = json_encode($images);
-
-        \App\Models\Jurusan::create($data); 
-
-        return back()->with('success', 'Program Keahlian berhasil ditambahkan!');
     }
+
+    // Antisipasi kalau beneran gak milih gambar sama sekali
+    if (empty($images)) {
+        $images[] = 'default.png';
+    }
+
+    // 4. Convert ke JSON string dan simpan
+    $data['gambar'] = json_encode($images);
+    \App\Models\Jurusan::create($data); 
+
+    return back()->with('success', 'Program Keahlian berhasil ditambahkan dengan Gambar!');
+}
 
     // 3. EDIT DATA
     public function update(Request $request, $id)
