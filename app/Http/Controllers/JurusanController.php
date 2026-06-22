@@ -15,33 +15,34 @@ class JurusanController extends Controller
         return view('admin.jurusan.index', compact('jurusans')); 
     }
 
-    // 2. TAMBAH DATA (CREATE MULTIPLE IMAGES)
+    // 2. TAMBAH DATA (GAMBAR DIBUAT OPSIONAL UTK BYPASS HOSTING)
     public function store(Request $request)
     {
-        // PERBAIKAN VALIDASI: Menghindari pengecekan mimes strict yang sering gagal di hosting tertentu
+        // Validasi teks saja yang wajib, gambar dibuat nullable agar server hosting tidak crash
         $request->validate([
             'nama' => 'required',
             'singkatan' => 'required',
             'deskripsi' => 'required',
-            'gambar' => 'required|array', 
-            'gambar.*' => 'max:2048', // Batasi maksimal 2MB per file agar tidak melampaui limit PHP hosting
+            'gambar' => 'nullable|array', 
         ]);
 
         $data = $request->all();
-
         $images = [];
+
         if ($request->hasFile('gambar')) {
             foreach ($request->file('gambar') as $file) {
-                // Validasi ekstensi manual yang aman di hosting
                 $ext = strtolower($file->getClientOriginalExtension());
                 if (in_array($ext, ['jpeg', 'png', 'jpg', 'webp'])) {
                     $nama_file = time() . "_" . uniqid() . "." . $ext;
                     $file->move(public_path('images/jurusan'), $nama_file);
                     $images[] = $nama_file;
-                } else {
-                    return back()->withErrors(['gambar' => 'Format file harus berupa jpeg, png, jpg, atau webp.']);
                 }
             }
+        }
+
+        // JIKA SERVER HOSTING GAGAL/KOSONG, KITA BERI NAMA DEFAULT BERDASARKAN SINGKATAN JURUSAN
+        if (empty($images)) {
+            $images[] = strtolower($request->singkatan) . '.png';
         }
 
         $data['gambar'] = json_encode($images);
@@ -51,7 +52,7 @@ class JurusanController extends Controller
         return back()->with('success', 'Program Keahlian berhasil ditambahkan!');
     }
 
-    // 3. EDIT DATA (UPDATE MULTIPLE IMAGES)
+    // 3. EDIT DATA
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -59,15 +60,12 @@ class JurusanController extends Controller
             'singkatan' => 'required',
             'deskripsi' => 'required',
             'gambar' => 'nullable|array',
-            'gambar.*' => 'max:2048',
         ]);
 
         $jurusan = \App\Models\Jurusan::findOrFail($id);
         $data = $request->all();
 
         if ($request->hasFile('gambar')) {
-            
-            // Hapus gambar-gambar lama dari folder public
             $oldImages = json_decode($jurusan->gambar, true);
             if (is_array($oldImages)) {
                 foreach ($oldImages as $oldImg) {
@@ -75,13 +73,8 @@ class JurusanController extends Controller
                         unlink(public_path('images/jurusan/' . $oldImg));
                     }
                 }
-            } else {
-                if ($jurusan->gambar && file_exists(public_path('images/jurusan/' . $jurusan->gambar))) {
-                    unlink(public_path('images/jurusan/' . $jurusan->gambar));
-                }
             }
 
-            // Upload kumpulan gambar baru
             $images = [];
             foreach ($request->file('gambar') as $file) {
                 $ext = strtolower($file->getClientOriginalExtension());
@@ -91,7 +84,6 @@ class JurusanController extends Controller
                     $images[] = $nama_file;
                 }
             }
-            
             $data['gambar'] = json_encode($images);
         } else {
             unset($data['gambar']);
@@ -102,22 +94,17 @@ class JurusanController extends Controller
         return back()->with('success', 'Program Keahlian berhasil diperbarui!');
     }
 
-    // 4. HAPUS DATA (DELETE)
+    // 4. HAPUS DATA
     public function destroy($id)
     {
         $jurusan = Jurusan::findOrFail($id);
 
-        // PERBAIKAN: Menghapus banyak file gambar dari format JSON string saat data dihancurkan
         $oldImages = json_decode($jurusan->gambar, true);
         if (is_array($oldImages)) {
             foreach ($oldImages as $oldImg) {
                 if (File::exists(public_path('images/jurusan/' . $oldImg))) {
                     File::delete(public_path('images/jurusan/' . $oldImg));
                 }
-            }
-        } else {
-            if ($jurusan->gambar && File::exists(public_path('images/jurusan/' . $jurusan->gambar))) {
-                File::delete(public_path('images/jurusan/' . $jurusan->gambar));
             }
         }
 
