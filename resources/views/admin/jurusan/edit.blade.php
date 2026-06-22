@@ -18,7 +18,8 @@
         </div>
 
         <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-            <form action="/admin/jurusan/{{ $jurusan->id }}/update" method="POST">
+            <!-- PERBAIKAN: Action URL disesuaikan dengan web.php & ditambahkan enctype untuk upload gambar -->
+            <form action="/admin/jurusan/update/{{ $jurusan->id }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 
                 <div class="mb-5">
@@ -29,6 +30,12 @@
                 <div class="mb-5">
                     <label class="block text-sm font-bold text-slate-700 mb-2">Singkatan (Misal: DKV)</label>
                     <input type="text" name="singkatan" value="{{ $jurusan->singkatan }}" class="w-full border border-slate-300 rounded-xl p-3 focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all uppercase" required>
+                </div>
+
+                <!-- PERBAIKAN: Ditambahkan input file gambar yang sebelumnya absen di form ini -->
+                <div class="mb-5">
+                    <label class="block text-sm font-bold text-slate-700 mb-2">Ganti Gambar <span class="text-xs text-slate-400 font-normal">(Opsional, bisa pilih beberapa gambar)</span></label>
+                    <input type="file" name="gambar[]" multiple class="w-full border border-slate-300 rounded-xl p-2.5 bg-slate-50 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-slate-900 file:text-white hover:file:bg-slate-800 transition-all cursor-pointer" accept="image/*">
                 </div>
 
                 <div class="mb-8">
