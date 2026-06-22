@@ -10,6 +10,20 @@ use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
+| ROUTE DARURAT: Jalankan ini sekali di hosting untuk menghubungkan Storage
+|--------------------------------------------------------------------------
+*/
+Route::get('/buat-storage-link', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('storage:link');
+        return 'Mantap! Storage link berhasil dibuat. Sekarang coba upload gambarnya lagi.';
+    } catch (\Exception $e) {
+        return 'Gagal membuat storage link: ' . $e->getMessage();
+    }
+});
+
+/*
+|--------------------------------------------------------------------------
 | 1. Route Halaman Publik (Bisa Diakses Semua Orang)
 |--------------------------------------------------------------------------
 */
@@ -42,7 +56,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 */
 Route::middleware(['auth'])->group(function () {
     
-    // Dashboard Admin (SEKARANG PAKAI CONTROLLER)
+    // Dashboard Admin
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
     // Kelola Jurusan
