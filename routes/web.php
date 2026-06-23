@@ -62,9 +62,8 @@ Route::middleware(['auth'])->group(function () {
     // Kelola Jurusan
     Route::get('/admin/jurusan', [JurusanController::class, 'index']);
     Route::post('/admin/jurusan/store', [JurusanController::class, 'store']);
-    Route::post('/admin/jurusan/update/{id}', [JurusanController::class, 'update']);
+    Route::post('/admin/jurusan/{id}/update', [JurusanController::class, 'update']); 
     Route::delete('/admin/jurusan/delete/{id}', [JurusanController::class, 'destroy']);
-
     // Kelola Kontak
     Route::get('/admin/kontak', [KontakController::class, 'edit']);
     Route::post('/admin/kontak/update', [KontakController::class, 'update']);

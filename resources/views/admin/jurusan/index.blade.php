@@ -137,7 +137,7 @@
         
         <form id="edit_form" method="POST" enctype="multipart/form-data" class="p-6 space-y-4">
             @csrf
-            @method('PUT') <div>
+            <div>
                 <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Nama Jurusan</label>
                 <input type="text" id="edit_nama" name="nama" class="w-full border border-slate-200 rounded-2xl p-3 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-green-500/20 outline-none text-sm" required>
             </div>
@@ -192,7 +192,7 @@
 <script>
 function openEditModal(id, nama, singkatan, deskripsi) {
     // Menyesuaikan action URL agar menembak rute update dengan benar
-    document.getElementById('edit_form').action = '/admin/jurusan/' + id + '/update';
+    document.getElementById('edit_form').action = '/admin/jurusan/update' + id;
     document.getElementById('edit_nama').value = nama;
     document.getElementById('edit_singkatan').value = singkatan;
     document.getElementById('edit_deskripsi').value = deskripsi;

@@ -8,121 +8,128 @@ use Illuminate\Support\Facades\File;
 
 class JurusanController extends Controller
 {
-    // 1. TAMPILKAN DATA
+    // 1. TAMPIL DATA
     public function index()
     {
-        $jurusans = Jurusan::latest()->get();
-        return view('admin.jurusan.index', compact('jurusans')); 
+        $jurusans = Jurusan::all();
+        return view('admin.jurusan.index', compact('jurusans'));
     }
 
-    // 2. TAMBAH DATA (GAMBAR DIBUAT OPSIONAL UTK BYPASS HOSTING)
+    // 2. TAMBAH DATA (STORE)
     public function store(Request $request)
-{
-    // 1. Validasi teksnya saja. Pengecekan file kita lepas dari Laravel biar gak di-blok server
-    $request->validate([
-        'nama' => 'required',
-        'singkatan' => 'required',
-        'deskripsi' => 'required',
-    ]);
-
-    // 2. Ambil data teks
-    $data = [
-        'nama'      => $request->nama,
-        'singkatan' => $request->singkatan,
-        'deskripsi' => $request->deskripsi,
-    ];
-
-    $images = [];
-
-    // 3. Langsung eksekusi pemindahan file fisik tanpa babak belu validasi strict
-    if ($request->hasFile('gambar')) {
-        foreach ($request->file('gambar') as $file) {
-            // Ambil ekstensi asli file (contoh: png, jpg)
-            $ext = strtolower($file->getClientOriginalExtension());
-            
-            // Filter manual formatnya biar aman
-            if (in_array($ext, ['jpeg', 'png', 'jpg', 'webp'])) {
-                // Bikin nama unik
-                $nama_file = time() . "_" . uniqid() . "." . $ext;
-                
-                // LANGSUNG dipaksa pindah ke folder public/images/jurusan
-                $file->move(public_path('images/jurusan'), $nama_file);
-                
-                // Masukkan nama file ke array
-                $images[] = $nama_file;
-            }
-        }
-    }
-
-    // Antisipasi kalau beneran gak milih gambar sama sekali
-    if (empty($images)) {
-        $images[] = 'default.png';
-    }
-
-    // 4. Convert ke JSON string dan simpan
-    $data['gambar'] = json_encode($images);
-    \App\Models\Jurusan::create($data); 
-
-    return back()->with('success', 'Program Keahlian berhasil ditambahkan dengan Gambar!');
-}
-
-    // 3. EDIT DATA
-    public function update(Request $request, $id)
     {
+        // Validasi teks saja, lepaskan pengecekan file ketat dari Laravel agar lolos dari blokir shared hosting
         $request->validate([
             'nama' => 'required',
             'singkatan' => 'required',
             'deskripsi' => 'required',
-            'gambar' => 'nullable|array',
         ]);
 
-        $jurusan = \App\Models\Jurusan::findOrFail($id);
-        $data = $request->all();
+        $data = [
+            'nama'      => $request->nama,
+            'singkatan' => $request->singkatan,
+            'deskripsi' => $request->deskripsi,
+        ];
 
+        $images = [];
+
+        // Deteksi input file gambar
         if ($request->hasFile('gambar')) {
-            $oldImages = json_decode($jurusan->gambar, true);
-            if (is_array($oldImages)) {
-                foreach ($oldImages as $oldImg) {
-                    if (file_exists(public_path('images/jurusan/' . $oldImg))) {
-                        unlink(public_path('images/jurusan/' . $oldImg));
+            foreach ($request->file('gambar') as $file) {
+                if ($file->isValid()) {
+                    $ext = strtolower($file->getClientOriginalExtension());
+                    if (in_array($ext, ['jpeg', 'png', 'jpg', 'webp', 'svg'])) {
+                        // Ambil nama asli atau buat nama unik
+                        $nama_file = time() . "_" . uniqid() . "." . $ext;
+                        $file->move(public_path('images/jurusan'), $nama_file);
+                        $images[] = $nama_file;
                     }
                 }
             }
+        }
 
+        // Jalur Fallback: Jika gambar kosong, kita set nama file berdasarkan singkatan
+        if (empty($images)) {
+            $images[] = strtolower($request->singkatan) . '.png';
+        }
+
+        // Simpan dalam format JSON string agar serasi dengan pembacaan Blade
+        $data['gambar'] = json_encode($images);
+
+        Jurusan::create($data);
+
+        return redirect('/admin/jurusan')->with('success', 'Program Keahlian berhasil ditambahkan!');
+    }
+
+    // 3. EDIT DATA (UPDATE) - Menyesuaikan rute POST bawaan JS Modal kamu
+    public function update(Request $request, $id)
+    {
+        $jurusan = Jurusan::findOrFail($id);
+
+        $request->validate([
+            'nama' => 'required',
+            'singkatan' => 'required',
+            'deskripsi' => 'required',
+        ]);
+
+        $data = [
+            'nama'      => $request->nama,
+            'singkatan' => $request->singkatan,
+            'deskripsi' => $request->deskripsi,
+        ];
+
+        // Jika user mengunggah gambar baru saat edit
+        if ($request->hasFile('gambar')) {
             $images = [];
             foreach ($request->file('gambar') as $file) {
-                $ext = strtolower($file->getClientOriginalExtension());
-                if (in_array($ext, ['jpeg', 'png', 'jpg', 'webp'])) {
-                    $nama_file = time() . "_" . uniqid() . "." . $ext;
-                    $file->move(public_path('images/jurusan'), $nama_file);
-                    $images[] = $nama_file;
+                if ($file->isValid()) {
+                    $ext = strtolower($file->getClientOriginalExtension());
+                    if (in_array($ext, ['jpeg', 'png', 'jpg', 'webp', 'svg'])) {
+                        $nama_file = time() . "_" . uniqid() . "." . $ext;
+                        $file->move(public_path('images/jurusan'), $nama_file);
+                        $images[] = $nama_file;
+                    }
                 }
             }
-            $data['gambar'] = json_encode($images);
-        } else {
-            unset($data['gambar']);
+            
+            if (!empty($images)) {
+                // Hapus gambar lama di server jika ada kaitan file fisik lawas
+                $oldImages = json_decode($jurusan->gambar, true);
+                if (is_array($oldImages)) {
+                    foreach ($oldImages as $oldImg) {
+                        $oldPath = public_path('images/jurusan/' . $oldImg);
+                        if (File::exists($oldPath) && $oldImg != 'default.png') {
+                            File::delete($oldPath);
+                        }
+                    }
+                }
+                $data['gambar'] = json_encode($images);
+            }
         }
 
         $jurusan->update($data);
 
-        return back()->with('success', 'Program Keahlian berhasil diperbarui!');
+        return redirect('/admin/jurusan')->with('success', 'Program Keahlian berhasil diperbarui!');
     }
 
-    // 4. HAPUS DATA
+    // 4. HAPUS DATA (DELETE)
     public function destroy($id)
     {
         $jurusan = Jurusan::findOrFail($id);
-
-        $oldImages = json_decode($jurusan->gambar, true);
-        if (is_array($oldImages)) {
-            foreach ($oldImages as $oldImg) {
-                if (File::exists(public_path('images/jurusan/' . $oldImg))) {
-                    File::delete(public_path('images/jurusan/' . $oldImg));
+        
+        // Hapus file fisik gambar di hosting agar tidak memenuhi penyimpanan
+        $images = json_decode($jurusan->gambar, true);
+        if (is_array($images)) {
+            foreach ($images as $img) {
+                $path = public_path('images/jurusan/' . $img);
+                if (File::exists($path)) {
+                    File::delete($path);
                 }
             }
         }
 
         $jurusan->delete();
-        return back()->with('success', 'Program Keahlian berhasil dihapus!');
+
+        return redirect('/admin/jurusan')->with('success', 'Program Keahlian berhasil dihapus!');
     }
 }
